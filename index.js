@@ -3,7 +3,7 @@ const express = require("express")
 const {Server} = require("socket.io")
 const app = express();
 const path = require('path');
-const { Client } = require("socket.io/dist/client");
+
 
 const server = http.createServer(app)
 const io = new Server(server)
@@ -12,8 +12,11 @@ const io = new Server(server)
 
 const port = 8000
 
-// socket, means client 
+// socket, means client  
 io.on('connection',(socket)=>{
+    socket.on("user-message",(message)=>{
+        io.emit('message',message);
+    });
 
 })
 
